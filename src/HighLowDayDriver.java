@@ -8,7 +8,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-public class HighLowStockDriver extends Configured implements Tool {
+public class HighLowDayDriver extends Configured implements Tool {
 
 	@Override
 	public int run(String[] args) throws Exception {
@@ -22,14 +22,14 @@ public class HighLowStockDriver extends Configured implements Tool {
 		}
 
 		Job job = new Job(getConf());
-		job.setJarByClass(HighLowStockDriver.class);
+		job.setJarByClass(HighLowDayDriver.class);
 		job.setJobName(this.getClass().getName());
 		
 		FileInputFormat.setInputPaths(job, new Path(input));
 		FileOutputFormat.setOutputPath(job, new Path(output));
 
-		job.setMapperClass(HighLowStockMapper.class);
-		job.setReducerClass(HighLowStockReducer.class);
+		job.setMapperClass(HighLowDayMapper.class);
+		job.setReducerClass(HighLowDayReducer.class);
 
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(DoubleWritable.class);
@@ -42,7 +42,7 @@ public class HighLowStockDriver extends Configured implements Tool {
 	}
 
 	public static void main(String[] args) throws Exception {
-		HighLowStockDriver driver = new HighLowStockDriver();
+		HighLowDayDriver driver = new HighLowDayDriver();
 		int exitCode = ToolRunner.run(driver, args);
 		System.exit(exitCode);
 	}

@@ -4,7 +4,7 @@ import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
-public class HighLowStockReducer extends Reducer<Text, DoubleWritable, Text, Text> {
+public class HighLowDayReducer extends Reducer<Text, DoubleWritable, Text, Text> {
 
 	@Override
 	public void reduce(Text key, Iterable<DoubleWritable> values, Context context) throws IOException,
