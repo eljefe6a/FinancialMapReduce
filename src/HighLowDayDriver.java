@@ -8,6 +8,10 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
+/**
+ * Hadoop MapReduce example showing high and low for a day across all stock symbols
+ * 
+ */
 public class HighLowDayDriver extends Configured implements Tool {
 
 	@Override
@@ -24,7 +28,7 @@ public class HighLowDayDriver extends Configured implements Tool {
 		Job job = new Job(getConf());
 		job.setJarByClass(HighLowDayDriver.class);
 		job.setJobName(this.getClass().getName());
-		
+
 		FileInputFormat.setInputPaths(job, new Path(input));
 		FileOutputFormat.setOutputPath(job, new Path(output));
 

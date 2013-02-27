@@ -4,6 +4,10 @@ import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
+/**
+ * Hadoop MapReduce example showing high and low for a day across all stock symbols
+ * 
+ */
 public class HighLowDayReducer extends Reducer<Text, DoubleWritable, Text, Text> {
 
 	@Override

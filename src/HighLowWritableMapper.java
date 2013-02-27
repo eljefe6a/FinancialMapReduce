@@ -1,15 +1,15 @@
 import java.io.IOException;
+import java.math.BigDecimal;
 
-import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 /**
- * Hadoop MapReduce example showing high and low for a day across all stock symbols
- * 
+ * Hadoop MapReduce example showing a custom Writable
+ *
  */
-public class HighLowDayMapper extends Mapper<LongWritable, Text, Text, DoubleWritable> {
+public class HighLowWritableMapper extends Mapper<LongWritable, Text, Text, StockWritable> {
 	/**
 	 * Expected input:<br>
 	 * 
@@ -34,9 +34,9 @@ public class HighLowDayMapper extends Mapper<LongWritable, Text, Text, DoubleWri
 			return;
 		}
 
-		// You'd normally represent money as a BigDecimal, but we're using doubles
-		// to make things easier to understand
-		double close = Double.parseDouble(columns[6]);
-		context.write(new Text(columns[2]), new DoubleWritable(close));
+		BigDecimal close = new BigDecimal(columns[6]);
+		StockWritable stockWritable = new StockWritable(columns[2], close);
+		
+		context.write(new Text(columns[1]), stockWritable);
 	}
 }

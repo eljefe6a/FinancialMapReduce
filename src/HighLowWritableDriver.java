@@ -1,6 +1,5 @@
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -9,10 +8,10 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 /**
- * Hadoop MapReduce example showing high and low for a stock symbol
+ * Hadoop MapReduce example showing a custom Writable
  *
  */
-public class HighLowStockDriver extends Configured implements Tool {
+public class HighLowWritableDriver extends Configured implements Tool {
 
 	@Override
 	public int run(String[] args) throws Exception {
@@ -26,17 +25,17 @@ public class HighLowStockDriver extends Configured implements Tool {
 		}
 
 		Job job = new Job(getConf());
-		job.setJarByClass(HighLowStockDriver.class);
+		job.setJarByClass(HighLowWritableDriver.class);
 		job.setJobName(this.getClass().getName());
 		
 		FileInputFormat.setInputPaths(job, new Path(input));
 		FileOutputFormat.setOutputPath(job, new Path(output));
 
-		job.setMapperClass(HighLowStockMapper.class);
-		job.setReducerClass(HighLowStockReducer.class);
+		job.setMapperClass(HighLowWritableMapper.class);
+		job.setReducerClass(HighLowWritableReducer.class);
 
 		job.setMapOutputKeyClass(Text.class);
-		job.setMapOutputValueClass(DoubleWritable.class);
+		job.setMapOutputValueClass(StockWritable.class);
 
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
@@ -46,7 +45,7 @@ public class HighLowStockDriver extends Configured implements Tool {
 	}
 
 	public static void main(String[] args) throws Exception {
-		HighLowStockDriver driver = new HighLowStockDriver();
+		HighLowWritableDriver driver = new HighLowWritableDriver();
 		int exitCode = ToolRunner.run(driver, args);
 		System.exit(exitCode);
 	}

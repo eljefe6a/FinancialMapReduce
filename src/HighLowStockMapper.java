@@ -5,6 +5,10 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
+/**
+ * Hadoop MapReduce example showing high and low for a stock symbol
+ *
+ */
 public class HighLowStockMapper extends Mapper<LongWritable, Text, Text, DoubleWritable> {
 	/**
 	 * Expected input:<br>
