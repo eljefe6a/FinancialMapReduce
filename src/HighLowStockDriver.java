@@ -27,7 +27,7 @@ public class HighLowStockDriver extends Configured implements Tool {
 
 		Job job = new Job(getConf());
 		job.setJarByClass(HighLowStockDriver.class);
-		job.setJobName(this.getClass().getName());
+		job.setJobName("High Low per Stock");
 		
 		FileInputFormat.setInputPaths(job, new Path(input));
 		FileOutputFormat.setOutputPath(job, new Path(output));

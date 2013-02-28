@@ -27,7 +27,7 @@ public class HighLowDayDriver extends Configured implements Tool {
 
 		Job job = new Job(getConf());
 		job.setJarByClass(HighLowDayDriver.class);
-		job.setJobName(this.getClass().getName());
+		job.setJobName("High Low per Day");
 
 		FileInputFormat.setInputPaths(job, new Path(input));
 		FileOutputFormat.setOutputPath(job, new Path(output));
