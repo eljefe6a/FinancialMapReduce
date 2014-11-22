@@ -1,7 +1,7 @@
 FinancialMapReduce
 ==================
 
-Some examples of using financial data in MapReduce programs.  The programs find each stock's all time high/low and a give day's high/low.  Use the dataset from InfoChimps http://www.infochimps.com/datasets/nasdaq-exchange-daily-1970-2010-open-close-high-low-and-volume.  Be sure to delete the dividends files.  
+Some examples of using financial data in MapReduce programs.  The programs find each stock's all time high/low and a give day's high/low.  Use the dataset from InfoChimps http://www.infochimps.com/datasets/nasdaq-exchange-daily-1970-2010-open-close-high-low-and-volume or https://github.com/reillywatson/nasdaq-outliers/tree/master/data/NASDAQ.  Be sure to delete the dividends files.  
 
 This is the example code for the second episode of the [Hadoop MapReduce screencast](http://pragprog.com/screencasts/v-jamapr/processing-big-data-with-mapreduce).
 
